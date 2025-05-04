@@ -9,19 +9,17 @@ import CartComponent from "./components/cart";
 import BlogsComponent from "./components/blogs";
 import LogInComponent from "./components/login";
 
-
 function App() {
   return (
     <Router>
       <Navbar />
       <Routes>
-      <Route path="/" exact element={<BannerComponent />} /> 
-      <Route path="/products" exact element={<ProductsComponent />} />
-      <Route path="/products/product"  exact element ={<ProductComponent/>}/>
-      <Route path="/my-cart" exact element={<CartComponent/>} />
-      <Route path="/list-blogs"  exact element={<BlogsComponent/>} />
-      <Route path="/login" exact element={<LogInComponent/>} />
-     
+        <Route path="/" exact element={<BannerComponent />} />
+        <Route path="/products" exact element={<ProductsComponent />} />
+        <Route path="/products/product" exact element={<ProductComponent />} />
+        <Route path="/my-cart" exact element={<CartComponent />} />
+        <Route path="/list-blogs" exact element={<BlogsComponent />} />
+        <Route path="/login" exact element={<LogInComponent />} />
       </Routes>
       <FreqAskedQuestionComponent />
       <FooterComponent />
