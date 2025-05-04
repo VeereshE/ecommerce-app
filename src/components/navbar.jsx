@@ -4,6 +4,10 @@ import Container from "react-bootstrap/Container";
 import { FaGripLines } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import Nav from "react-bootstrap/Nav";
+import { FaCartArrowDown } from "react-icons/fa";
+import { AiFillAlipayCircle } from "react-icons/ai";
+import { FaShopify } from "react-icons/fa";
+import { TbLogs } from "react-icons/tb";
 import Navbar from "react-bootstrap/Navbar";
 
 function NavbarComponent() {
@@ -31,9 +35,9 @@ function NavbarComponent() {
       <Navbar
         expand="lg"
         style={{
-          backgroundColor: "#E3F2FD",
-          padding: "16px 24px",
-          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.05)",
+          backgroundColor: "#FFFFF",
+          padding: "18px 24px",
+          boxShadow: "0 6px 16px rgba(0, 0, 0, 0.05)",
           position: "sticky",
           top: 0,
           zIndex: 1000,
@@ -44,14 +48,25 @@ function NavbarComponent() {
             href="/"
             style={{
               fontWeight: "700",
+              display: "flex",            
+              alignItems: "center",
               color: "#1976D2",
               fontSize: "1.6rem",
               flexShrink: 0,
-              marginRight: "2rem",
+              marginRight: "5rem",
               textDecoration: "none",
+              paddingLeft: "5px",
+              gap:"5px"
             }}
           >
-          BuyNxt🤞 
+            <AiFillAlipayCircle
+              style={{
+                fontSize: "3rem",
+                color: "#1976D2",
+                bottom:"10px"
+              }}
+            />
+            BuyNxt
           </Navbar.Brand>
           {isMobile && (
             <Navbar.Toggle
@@ -75,14 +90,14 @@ function NavbarComponent() {
                 }}
               >
                 <Nav.Link href="/products" style={navLinkStyle}>
-                  Products
+                  <FaShopify /> Products
                 </Nav.Link>
-                
+
                 <Nav.Link href="/cart" style={navLinkStyle}>
-                  Cart
+                  <FaCartArrowDown /> Cart
                 </Nav.Link>
                 <Nav.Link href="/blogs" style={navLinkStyle}>
-                  Blogs
+                  <TbLogs /> Blogs
                 </Nav.Link>
                 <Nav.Link href="/signin" style={navLinkStyle}>
                   <Button style={buttonStyle}>Sign In </Button>{" "}
@@ -99,13 +114,13 @@ function NavbarComponent() {
         (isMobile && (
           <Container style={containerStylePopUp}>
             <Nav.Link href="/products" style={navLinkStyle}>
-              Products
+              <FaShopify /> Products
             </Nav.Link>
             <Nav.Link href="/cart" style={navLinkStyle}>
-              Cart
+              <FaCartArrowDown /> Cart
             </Nav.Link>
             <Nav.Link href="/blogs" style={navLinkStyle}>
-              Blogs
+              <TbLogs /> Blogs
             </Nav.Link>
             <Nav.Link href="/signin" style={navLinkStyle}>
               <Button style={buttonStyle}>Sign In </Button>{" "}
@@ -158,7 +173,6 @@ const buttonStyleToggle = {
   fontWeight: "bold",
   transition: "background-color 0.3s ease",
 };
-
 
 const containerStylePopUp = {
   backgroundColor: "#fff",
