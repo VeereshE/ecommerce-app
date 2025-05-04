@@ -1,3 +1,4 @@
+import { Link } from "@mui/material";
 import { useState } from "react";
 import Container from "react-bootstrap/esm/Container";
 import {
@@ -41,25 +42,24 @@ function FooterComponent() {
   };
 
   const onSubmitForm = () => {
-   if (validateEmail(email)){
-    toast.success("Subscribed! Thank you 😊", {
-      position: "top-right",
-    })
-   }else{
-    toast.error("Please enter a valid email address.", {
-      position: "top-right",
-    });
-   }
-   
+    if (validateEmail(email)) {
+      toast.success("Subscribed! Thank you 😊", {
+        position: "top-right",
+      });
+    } else {
+      toast.error("Please enter a valid email address.", {
+        position: "top-right",
+      });
+    }
   };
   return (
     <Container fluid style={footerContainer}>
-      <div style={footerContent}>
-        <div style={newsletterStyle}>
+      <Container style={footerContent}>
+        <Container style={newsletterStyle}>
           <p style={{ marginBottom: "8px", fontWeight: 600 }}>
             Subscribe to our Newsletter
           </p>
-          <form >
+          <form>
             <input
               type="email"
               placeholder="Enter your email"
@@ -70,9 +70,9 @@ function FooterComponent() {
           <button style={subscribeButton} onClick={onSubmitForm}>
             Subscribe
           </button>
-          <ToastContainer/>
-        </div>
-        <div style={linkSection}>
+          <ToastContainer />
+        </Container>
+        <Container style={linkSection}>
           <a href="/about" style={linkStyle}>
             About Us
           </a>
@@ -85,46 +85,49 @@ function FooterComponent() {
           <a href="/privacy" style={linkStyle}>
             Privacy Policy
           </a>
-        </div>
+        </Container>
 
-        <div style={socialSection}>
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noreferrer"
-            style={iconLink}
-          >
-            <FaFacebookF />
-          </a>
-          <a
+        <Container style={socialSection}>
+          <Container>
+            <Link
+              href="https://facebook.com"
+              target="_blank"
+              rel="noreferrer"
+              style={iconLink}
+            >
+              <FaFacebookF />
+            </Link>
+          </Container>
+
+          <Link
             href="https://twitter.com"
             target="_blank"
             rel="noreferrer"
             style={iconLink}
           >
             <FaTwitter />
-          </a>
-          <a
+          </Link>
+          <Link
             href="https://instagram.com"
             target="_blank"
             rel="noreferrer"
             style={iconLink}
           >
             <FaInstagram />
-          </a>
-          <a
+          </Link>
+          <Link
             href="https://linkedin.com"
             target="_blank"
             rel="noreferrer"
             style={iconLink}
           >
             <FaLinkedinIn />
-          </a>
-        </div>
+          </Link>
+        </Container>
 
-        <div style={paymentSection}>
+        <Container style={paymentSection}>
           <p style={{ marginBottom: "8px", fontWeight: 600 }}>We Accept</p>
-          <div style={paymentIcons}>
+          <Container style={paymentIcons}>
             {paymentLogos.map((payment) => (
               <img
                 key={payment.name}
@@ -133,9 +136,9 @@ function FooterComponent() {
                 style={paymentIconStyle}
               />
             ))}
-          </div>
-        </div>
-      </div>
+          </Container>
+        </Container>
+      </Container>
 
       <p style={footerNote}>
         © {new Date().getFullYear()} BuyNxt. All rights reserved.
@@ -153,8 +156,9 @@ const footerContainer = {
 
 const footerContent = {
   display: "flex",
-  flexDirection: "column",
-  gap: "20px",
+  flexDirection: "row", // row layout
+  flexWrap: "wrap", // allows wrapping to the next line
+  gap: "20px", // spacing between items
   alignItems: "center",
   justifyContent: "center",
 };
@@ -215,7 +219,6 @@ const newsletterStyle = {
   alignItems: "center",
   gap: "8px",
 };
-
 
 const inputStyle = {
   padding: "8px 12px",

@@ -1,12 +1,12 @@
 import { Container } from '@mui/material'
 import React from 'react'
 
-function ProductsComponent (){
+function BlogsComponent(){
   return (
     <Container>
-      <h1>Products</h1>
+      <h1> Blogs of list of happy </h1>
     </Container>
   )
 }
 
-export default ProductsComponent
+export default BlogsComponent

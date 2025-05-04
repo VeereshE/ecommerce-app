@@ -35,7 +35,7 @@ function NavbarComponent() {
       <Navbar
         expand="lg"
         style={{
-          backgroundColor: "#B0E0E6",
+          backgroundColor: "#F5F5F5",
           padding: "18px 24px",
           boxShadow: "0 6px 16px rgba(0, 0, 0, 0.05)",
           position: "sticky",
@@ -93,17 +93,15 @@ function NavbarComponent() {
                   <FaShopify /> Products
                 </Nav.Link>
 
-                <Nav.Link href="/cart" style={navLinkStyle}>
+                <Nav.Link href="/my-cart" style={navLinkStyle}>
                   <FaCartArrowDown /> Cart
                 </Nav.Link>
-                <Nav.Link href="/blogs" style={navLinkStyle}>
+                <Nav.Link href="/list-blogs" style={navLinkStyle}>
                   <TbLogs /> Blogs
                 </Nav.Link>
-                <Nav.Link href="/signin" style={navLinkStyle}>
-                  <Button style={buttonStyle}>Sign In </Button>{" "}
-                </Nav.Link>
+              
                 <Nav.Link href="/login" style={navLinkStyle}>
-                  <Button style={buttonStyle}>Log In </Button>{" "}
+                  <Button style={buttonStyle}>Log In </Button>
                 </Nav.Link>
               </Nav>
             </Navbar.Collapse>
@@ -116,15 +114,13 @@ function NavbarComponent() {
             <Nav.Link href="/products" style={navLinkStyle}>
               <FaShopify /> Products
             </Nav.Link>
-            <Nav.Link href="/cart" style={navLinkStyle}>
+            <Nav.Link href="/my-cart" style={navLinkStyle}>
               <FaCartArrowDown /> Cart
             </Nav.Link>
-            <Nav.Link href="/blogs" style={navLinkStyle}>
+            <Nav.Link href="/list-blogs" style={navLinkStyle}>
               <TbLogs /> Blogs
             </Nav.Link>
-            <Nav.Link href="/signin" style={navLinkStyle}>
-              <Button style={buttonStyle}>Sign In </Button>{" "}
-            </Nav.Link>
+           
             <Nav.Link href="/login" style={navLinkStyle}>
               <Button style={buttonStyle}>Log In </Button>{" "}
             </Nav.Link>

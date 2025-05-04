@@ -15,22 +15,30 @@ export default function FreqAskedQuestion() {
         variant="h5"
         gutterBottom
         align="start"
+        color="#1976D2"
         sx={{ fontWeight: "bold" }}
       >
         Frequently Asked Questions
       </Typography>
       <Accordion>
         <AccordionSummary
-          expandIcon={<ArrowDownwardIcon />}
+          expandIcon={<ArrowDownwardIcon  color="#1976D2"/>}
           aria-controls="panel1-content"
           id="panel1-header"
         >
-          <Typography component="span">
+          <Typography
+            variant="h6"
+            color="#1976D2"
+            sx={{
+              fontSize:"1rem", 
+              fontWeight: "bold",
+            }}
+          >
             What payment methods do you accept?
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography color="#1976D2">
             We accept all major credit and debit cards, PayPal, Apple Pay,
             Google Pay, and some Buy Now, Pay Later services like Klarna and
             Afterpay.
@@ -39,14 +47,21 @@ export default function FreqAskedQuestion() {
       </Accordion>
       <Accordion>
         <AccordionSummary
-          expandIcon={<ArrowDownwardIcon />}
+          expandIcon={<ArrowDownwardIcon  color="#1976D2"/>}
           aria-controls="panel1-content"
           id="panel1-header"
         >
-          <Typography component="span">How long does shipping take?</Typography>
+          <Typography
+            variant="h6"
+            color="#1976D2"
+            sx={{
+              fontSize:"1rem", 
+              fontWeight: "bold",
+            }}
+          >How long does shipping take?</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography color="#1976D2">
             Standard shipping typically takes 3–7 business days. Expedited and
             express options are also available at checkout for faster delivery.
           </Typography>
@@ -58,12 +73,19 @@ export default function FreqAskedQuestion() {
           aria-controls="panel1-content"
           id="panel1-header"
         >
-          <Typography component="span">
+          <Typography
+            variant="h6"
+            color="#1976D2"
+            sx={{
+              fontSize:"1rem", 
+              fontWeight: "bold",
+            }}
+          >
             Can I return or exchange an item?
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography color="#1976D2">
             Yes, we offer a 30-day return policy for unused items in original
             packaging. Visit our Returns & Exchanges page for a step-by-step
             guide.
@@ -76,10 +98,17 @@ export default function FreqAskedQuestion() {
           aria-controls="panel1-content"
           id="panel1-header"
         >
-          <Typography component="span"> How do I track my order?</Typography>
+          <Typography
+            variant="h6"
+            color="#1976D2"
+            sx={{
+              fontSize:"1rem", 
+              fontWeight: "bold",
+            }}
+          > How do I track my order?</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography color="#1976D2">
             Once your order ships, you'll receive an email with a tracking
             number and link. You can also track it via your account dashboard.
           </Typography>
@@ -91,13 +120,19 @@ export default function FreqAskedQuestion() {
           aria-controls="panel1-content"
           id="panel1-header"
         >
-          <Typography component="span">
-            {" "}
+           <Typography
+            variant="h6"
+            color="#1976D2"
+            sx={{
+              fontSize:"1rem", 
+              fontWeight: "bold",
+            }}
+          >
             Do you ship internationally?
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography color="#1976D2">
             Yes, we ship to over 50 countries worldwide. International shipping
             rates and delivery times will vary based on location.
           </Typography>
