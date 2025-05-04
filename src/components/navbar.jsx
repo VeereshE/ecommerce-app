@@ -35,7 +35,7 @@ function NavbarComponent() {
       <Navbar
         expand="lg"
         style={{
-          backgroundColor: "#FFFFF",
+          backgroundColor: "#B0E0E6",
           padding: "18px 24px",
           boxShadow: "0 6px 16px rgba(0, 0, 0, 0.05)",
           position: "sticky",
