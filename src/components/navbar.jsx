@@ -55,13 +55,13 @@ function NavbarComponent() {
               flexShrink: 0,
               marginRight: "5rem",
               textDecoration: "none",
-              paddingLeft: "5px",
+              paddingLeft: "2px",
               gap:"5px"
             }}
           >
             <AiFillAlipayCircle
               style={{
-                fontSize: "3rem",
+                fontSize: "2.5rem",
                 color: "#1976D2",
                 bottom:"10px"
               }}

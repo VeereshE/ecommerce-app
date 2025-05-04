@@ -1,11 +1,11 @@
 import React from 'react'
 
-const banner = () => {
+function BannerComponent(){
   return (
     <div>
-      <h1>Banner Components</h1>
+      <h1>Banner Section</h1>
     </div>
   )
 }
 
-export default banner
+export default BannerComponent
