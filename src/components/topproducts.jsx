@@ -10,7 +10,7 @@ import {
   Button,
 } from "@mui/material";
 
-function ProductsComponent (){
+function TopProductComponent() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -18,7 +18,9 @@ function ProductsComponent (){
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
       .then((data) => {
-        setProducts(data);
+        const shuffled = data.sort(() => 0.5 - Math.random());
+        const randomSix = shuffled.slice(0, 6);
+        setProducts(randomSix);
         setLoading(false);
       })
       .catch((err) => {
@@ -37,7 +39,7 @@ function ProductsComponent (){
         color="#1976D2"
         sx={{ fontWeight: "bold" }}
       >
-        All Products
+        Best Selling Products
       </Typography>
 
       {loading ? (
@@ -151,4 +153,4 @@ const buttonStyleCart = {
   },
 };
 
-export default ProductsComponent
+export default TopProductComponent;

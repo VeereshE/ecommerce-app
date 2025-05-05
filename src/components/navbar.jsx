@@ -89,7 +89,7 @@ function NavbarComponent() {
                   flexWrap: "wrap",
                 }}
               >
-                <Nav.Link href="/products" style={navLinkStyle}>
+               <Nav.Link href="/products" style={navLinkStyle}>
                   <FaShopify /> Products
                 </Nav.Link>
 
@@ -132,6 +132,10 @@ function NavbarComponent() {
 
 const navLinkStyle = {
   color: "#1976D2",
+  display: "flex",
+  gap:"5px",
+  flexWrap: "wrap",
+  alignItems: "center",
   fontWeight: 700,
   fontSize: "1rem",
   textDecoration: "none",

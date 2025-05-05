@@ -73,11 +73,11 @@ function FooterComponent() {
           <ToastContainer />
         </Container>
         <Container style={linkSection}>
-          <a href="/about" style={linkStyle}>
+          <a href="/aboutus" style={linkStyle}>
             About Us
           </a>
           <a href="/contact" style={linkStyle}>
-            Contact Us
+            Contact
           </a>
           <a href="/support" style={linkStyle}>
             Support

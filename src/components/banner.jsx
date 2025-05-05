@@ -8,10 +8,12 @@ import 'swiper/css/navigation';
 import { Box, Typography, Button, Container } from '@mui/material';
 import { Link } from 'react-router-dom';
 import bannerData from '../data/bannerData.json';
+import TopProductComponent from './topproducts';
+import RatingComponent from './rating';
 
 function BannerComponent() {
   return (
-
+<>
     <Swiper
       spaceBetween={20}
       centeredSlides={true}
@@ -42,14 +44,7 @@ function BannerComponent() {
               position: 'relative',
             }}
           >
-            <Box
-              sx={{
-                backgroundColor: 'rgba(0,0,0,0.4)',
-                padding: { xs: 2, sm: 4 },
-                borderRadius: 2,
-                maxWidth: 600,
-              }}
-            >
+            <Box>
               <Typography 
                 variant="h3"
                 sx={{ fontWeight: 'bold', mb: 2, fontSize: { xs: '1.8rem', md: '3rem' } }}
@@ -73,7 +68,9 @@ function BannerComponent() {
         </SwiperSlide>
       ))}
     </Swiper>
-
+ <TopProductComponent/>
+ <RatingComponent/>
+  </>
   );
   
 }
@@ -89,5 +86,6 @@ const buttonStyle ={
   fontWeight: "bold",
   transition: "background-color 0.3s ease", 
 }
+
 
 export default BannerComponent;

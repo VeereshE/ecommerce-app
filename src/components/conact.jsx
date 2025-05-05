@@ -1,12 +1,12 @@
 import { Container } from '@mui/material'
 import React from 'react'
 
-function ProductComponent(){
+function ConactComponent(){
   return (
     <Container>
-      <h1>Product Single </h1>
+      <h1> Conact Comp </h1>
     </Container>
   )
 }
 
-export default ProductComponent
+export default ConactComponent
