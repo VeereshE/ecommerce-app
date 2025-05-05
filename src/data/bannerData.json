@@ -1,0 +1,27 @@
+[
+    {
+      "title": "Welcome to Our Store!",
+      "subtitle": "Discover the latest trends and exclusive deals.",
+      "image": "/public/images1.jpg",
+      "ctaText": "Shop Now",
+      "ctaLink": "/products",
+      "altText": "New arrivals in store"
+    },
+    {
+      "title": "Exclusive Summer Sale",
+      "subtitle": "Up to 50% off on selected items.",
+      "image": "/public/images2.webp",
+      "ctaText": "Explore Deals",
+      "ctaLink": "/products",
+      "altText": "Summer sale collection"
+    },
+    {
+      "title": "New Collection is Here",
+      "subtitle": "Fresh styles and bold looks.",
+      "image": "/public/images3.jpeg",
+      "ctaText": "View Collection",
+      "ctaLink": "/products", 
+      "altText": "Latest fashion collection"
+    }
+  ]
+  
