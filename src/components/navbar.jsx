@@ -48,7 +48,7 @@ function NavbarComponent() {
             href="/"
             style={{
               fontWeight: "700",
-              display: "flex",            
+              display: "flex",
               alignItems: "center",
               color: "#1976D2",
               fontSize: "1.6rem",
@@ -56,14 +56,14 @@ function NavbarComponent() {
               marginRight: "5rem",
               textDecoration: "none",
               paddingLeft: "2px",
-              gap:"5px"
+              gap: "5px",
             }}
           >
             <AiFillAlipayCircle
               style={{
                 fontSize: "2.5rem",
                 color: "#1976D2",
-                bottom:"10px"
+                bottom: "10px",
               }}
             />
             BuyNxt
@@ -89,7 +89,7 @@ function NavbarComponent() {
                   flexWrap: "wrap",
                 }}
               >
-               <Nav.Link href="/products" style={navLinkStyle}>
+                <Nav.Link href="/products" style={navLinkStyle}>
                   <FaShopify /> Products
                 </Nav.Link>
 
@@ -99,7 +99,7 @@ function NavbarComponent() {
                 <Nav.Link href="/list-blogs" style={navLinkStyle}>
                   <TbLogs /> Blogs
                 </Nav.Link>
-              
+
                 <Nav.Link href="/login" style={navLinkStyle}>
                   <Button style={buttonStyle}>Log In </Button>
                 </Nav.Link>
@@ -120,7 +120,7 @@ function NavbarComponent() {
             <Nav.Link href="/list-blogs" style={navLinkStyle}>
               <TbLogs /> Blogs
             </Nav.Link>
-           
+
             <Nav.Link href="/login" style={navLinkStyle}>
               <Button style={buttonStyle}>Log In </Button>{" "}
             </Nav.Link>
@@ -133,7 +133,7 @@ function NavbarComponent() {
 const navLinkStyle = {
   color: "#1976D2",
   display: "flex",
-  gap:"5px",
+  gap: "5px",
   flexWrap: "wrap",
   alignItems: "center",
   fontWeight: 700,
@@ -141,6 +141,23 @@ const navLinkStyle = {
   textDecoration: "none",
   transition: "color 0.2s ease-in-out",
   cursor: "pointer",
+};
+
+const containerStylePopUp = {
+  backgroundColor: "#fff",
+  display: "flex",
+  gap: "10px",
+  flexDirection: "column",
+  flexWrap: "wrap",
+  alignItems: "center",
+  justifyContent: "center",
+  position: "relative",
+  padding: "10px",
+  margin: "20px",
+  height: "100%",
+  opacity: 1,
+  transform: "translateY(0)",
+  transition: "all 0.4s ease",
 };
 
 const containerStyle = {
@@ -172,22 +189,6 @@ const buttonStyleToggle = {
   fontSize: "16px",
   fontWeight: "bold",
   transition: "background-color 0.3s ease",
-};
-
-const containerStylePopUp = {
-  backgroundColor: "#fff",
-  display: "flex",
-  gap: "10px",
-  flexDirection: "column",
-  flexWrap: "wrap",
-  alignItems: "center",
-  justifyContent: "center",
-  padding: "10px",
-  margin: "20px",
-  height: "100%",
-  opacity: 1,
-  transform: "translateY(0)",
-  transition: "all 0.4s ease",
 };
 
 // const hiddenStyle = {

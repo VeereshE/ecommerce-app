@@ -5,7 +5,6 @@ import {
   Box,
   Paper,
   CircularProgress,
-  Button,
 } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -20,22 +19,29 @@ function RatingComponent() {
       .then((data) => {
         const filtered = data.filter((product) => product.rating.rate > 3.5);
         setProducts(filtered);
-        setLoading(false); // ✅ FIX: Stop loading after fetch
+        setLoading(false); // Stop loading after fetch
       })
       .catch((error) => {
         console.error("Error fetching products:", error);
-        setLoading(false); // ✅ Also stop loading on error
+        setLoading(false); // Stop loading on error
       });
   }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (scrollRef.current) {
-        scrollRef.current.scrollBy({ left: 1, behavior: "smooth" });
+        if (
+          scrollRef.current.scrollLeft + scrollRef.current.offsetWidth >=
+          scrollRef.current.scrollWidth
+        ) {
+          scrollRef.current.scrollLeft = 0;
+        } else {
+          scrollRef.current.scrollBy({ left: 2, behavior: "smooth" });
+        }
       }
-    }, 30);
+    }, 1);
 
-    return () => clearInterval(interval);
+    return () => clearInterval(interval); 
   }, []);
 
   return (
@@ -61,10 +67,10 @@ function RatingComponent() {
             overflowX: "auto",
             gap: 2,
             pb: 2,
-            scrollbarWidth: "none",
-            msOverflowStyle: "none",
+            scrollbarWidth: "none", // Firefox
+            msOverflowStyle: "none", // IE/Edge
             "&::-webkit-scrollbar": {
-              display: "none",
+              display: "none", // Chrome, Safari
             },
           }}
         >
@@ -138,6 +144,5 @@ function RatingComponent() {
     </Container>
   );
 }
-
 
 export default RatingComponent;
