@@ -87,8 +87,7 @@ const buttonStyle ={
   cursor: "pointer",
   fontSize: "16px",
   fontWeight: "bold",
-  transition: "background-color 0.3s ease",
-    
+  transition: "background-color 0.3s ease", 
 }
 
 export default BannerComponent;
