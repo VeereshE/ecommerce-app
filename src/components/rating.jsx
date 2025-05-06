@@ -51,9 +51,9 @@ function RatingComponent() {
         gutterBottom
         align="left"
         color="primary"
-        sx={{ fontWeight: "bold" }}
+        sx={{ fontWeight: "bold", marginTop:"20px" }}
       >
-        Rated Products
+       Top Rated Products
       </Typography>
 
       {loading ? (

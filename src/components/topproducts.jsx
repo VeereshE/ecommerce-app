@@ -9,10 +9,22 @@ import {
   CircularProgress,
   Button,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function TopProductComponent() {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const onHandleViewMore = (id) => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+    setTimeout(() => {
+      navigate(`/products/${id}`);
+    }, 400);
+  };
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -31,106 +43,111 @@ function TopProductComponent() {
 
   return (
     <>
-    <Container sx={{ mt: 4 }}>
-      <Typography
-        variant="h4"
-        gutterBottom
-        align="start"
-        color="#1976D2"
-        sx={{ fontWeight: "bold" }}
-      >
-        Best Selling Products
-      </Typography>
-
-      {loading ? (
-        <CircularProgress sx={{ display: "block", margin: "0 auto" }} />
-      ) : (
-        <Grid
-          container
-          spacing={3}
-          sx={{
-            margin: "20px",
-          }}
+      <Container sx={{ mt: 4 }}>
+        <Typography
+          variant="h4"
+          gutterBottom
+          align="start"
+          color="#1976D2"
+          sx={{ fontWeight: "bold" }}
         >
-          {products.map((product) => (
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              md={4}
-              lg={3}
-              key={product.id}
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                gap: "10px",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Card
+          Best Selling Products
+        </Typography>
+
+        {loading ? (
+          <CircularProgress sx={{ display: "block", margin: "0 auto" }} />
+        ) : (
+          <Grid
+            container
+            spacing={3}
+            sx={{
+              margin: "20px",
+            }}
+          >
+            {products.map((product) => (
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                lg={3}
+                key={product.id}
                 sx={{
                   display: "flex",
-                  flexDirection: "column",
+                  flexDirection: "row",
+                  gap: "10px",
                   alignItems: "center",
-                  justifyContent:"center",
-                  flexWrap: "wrap", 
-                  height: "100%",
-                  width: "350px",
-                  boxShadow: 3,
-                  borderRadius: 2,
+                  justifyContent: "center",
                 }}
               >
-                <CardMedia
-                  component="img"
-                  height="200"
-                  image={product.image}
-                  alt={product.title}
-                  sx={{ objectFit: "contain", width: "80%", padding: 3 }}
-                />
-                <CardContent sx={{ textAlign: "center" }}>
-                  <Typography
-                    color="#1976D2"
-                    variant="h7"
-                    Wrap
-                    sx={{ fontWeight: 500 }}
-                  >
-                    {product.title}
-                  </Typography>
-                  <Container
-                    sx={{ display: "flex", flexDirection: "row", gap: "7px" }}
-                  >
+                <Card
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexWrap: "wrap",
+                    height: "100%",
+                    width: "350px",
+                    boxShadow: 3,
+                    borderRadius: 2,
+                  }}
+                >
+                  <CardMedia
+                    component="img"
+                    height="200"
+                    image={product.image}
+                    alt={product.title}
+                    sx={{ objectFit: "contain", width: "80%", padding: 3 }}
+                  />
+                  <CardContent sx={{ textAlign: "center" }}>
                     <Typography
-                      variant="body2"
                       color="#1976D2"
-                      sx={{ mt: 1, textDecoration: "line-through" }}
+                      variant="h7"
+                      Wrap
+                      sx={{ fontWeight: 500 }}
                     >
-                      Prices: ${product.price}
+                      {product.title}
                     </Typography>
-                    <Typography variant="body2" color="#1976D2" sx={{ mt: 1 }}>
-                      Discount Prices : ${product.price / 2}
-                    </Typography>
-                  </Container>
-                  <Container
-                    sx={{
-                      display: "flex",
-                      flexDirection: "row",
-                      gap: "15px",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      marginTop:"10px"
-                    }}
-                  >
-                    <Button style={buttonStyleCart}>View more</Button>
-                    <Button style={buttonStyleCart}>Buy Now</Button>
-                  </Container>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      )}
-    </Container>
+                    <Container
+                      sx={{ display: "flex", flexDirection: "row", gap: "7px" }}
+                    >
+                      <Typography
+                        variant="body2"
+                        color="#1976D2"
+                        sx={{ textDecoration: "line-through" }}
+                      >
+                        Price: ₹{(product.price * 84.27).toFixed(2)}
+                      </Typography>
+                      <Typography variant="body2" color="#1976D2">
+                        Discount: ₹{((product.price * 84.27) / 2).toFixed(2)}
+                      </Typography>
+                    </Container>
+                    <Container
+                      sx={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "15px",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        marginTop: "10px",
+                      }}
+                    >
+                      <Button
+                        style={buttonStyleCart}
+                        onClick={() => onHandleViewMore(product.id)}
+                      >
+                        View more
+                      </Button>
+                      <Button style={buttonStyleCart}>Add To Cart</Button>
+                    </Container>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        )}
+      </Container>
     </>
   );
 }

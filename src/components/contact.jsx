@@ -1,12 +1,12 @@
 import { Container } from '@mui/material'
 import React from 'react'
 
-function ConactComponent(){
+function ContactComponent(){
   return (
     <Container>
-      <h1> Conact Comp </h1>
+      <h1> ContactComponent Comp </h1>
     </Container>
   )
 }
 
-export default ConactComponent
+export default ContactComponent

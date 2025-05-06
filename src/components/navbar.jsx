@@ -10,10 +10,16 @@ import { FaShopify } from "react-icons/fa";
 import { TbLogs } from "react-icons/tb";
 import Navbar from "react-bootstrap/Navbar";
 
+
+
 function NavbarComponent() {
+
   const [isMobile, setIsMobile] = useState(false);
   const [isLaptop, setIsLaptop] = useState(false);
   const [isMobileNavbar, setIsMobileNavbar] = useState(false);
+
+  
+
 
   const handleClickSideNavbar = () => {
     setIsMobileNavbar((prev) => !prev);
@@ -92,10 +98,34 @@ function NavbarComponent() {
                 <Nav.Link href="/products" style={navLinkStyle}>
                   <FaShopify /> Products
                 </Nav.Link>
-
                 <Nav.Link href="/my-cart" style={navLinkStyle}>
-                  <FaCartArrowDown /> Cart
+                  <div
+                    style={{
+                      position: "relative",
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <FaCartArrowDown />
+                    <span
+                      style={{
+                        position: "absolute",
+                        top: "-15px",
+                        right: "-15px",
+                        backgroundColor: "#1976D2",
+                        color: "white",
+                        borderRadius: "50%",
+                        padding: "2px 6px",
+                        fontSize: "0.7rem",
+                        fontWeight: "bold",
+                      }}
+                    >
+                     9
+                    </span>
+                    <span style={{ marginLeft: "5px" }}>Cart</span>
+                  </div>
                 </Nav.Link>
+
                 <Nav.Link href="/list-blogs" style={navLinkStyle}>
                   <TbLogs /> Blogs
                 </Nav.Link>
@@ -115,7 +145,31 @@ function NavbarComponent() {
               <FaShopify /> Products
             </Nav.Link>
             <Nav.Link href="/my-cart" style={navLinkStyle}>
-              <FaCartArrowDown /> Cart
+              <div
+                style={{
+                  position: "relative",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <FaCartArrowDown />
+                <span
+                  style={{
+                    position: "absolute",
+                    top: "-15px",
+                    right: "-15px",
+                    backgroundColor: "#1976D2",
+                    color: "white",
+                    borderRadius: "50%",
+                    padding: "2px 6px",
+                    fontSize: "0.7rem",
+                    fontWeight: "bold",
+                  }}
+                >
+                   9
+                </span>
+                <span style={{ marginLeft: "5px" }}>Cart</span>
+              </div>
             </Nav.Link>
             <Nav.Link href="/list-blogs" style={navLinkStyle}>
               <TbLogs /> Blogs

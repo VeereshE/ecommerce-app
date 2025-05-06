@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 
 import TopProductComponent from "./topproducts";
 import RatingComponent from "./rating";
+import SubBannerComponent from "./subbannersection";
 
 const bannerData = [
   {
@@ -87,7 +88,7 @@ function BannerComponent() {
                   alignItems: "center",
                   justifyContent: "center",
                   gap: "5px",
-                  maxWidth: "600px", // Limiting content width to avoid overcrowding
+                  maxWidth: "600px",
                 }}
               >
                 <Typography
@@ -133,6 +134,7 @@ function BannerComponent() {
         ))}
       </Swiper>
       <TopProductComponent />
+      <SubBannerComponent/>
       <RatingComponent />
     </>
   );
