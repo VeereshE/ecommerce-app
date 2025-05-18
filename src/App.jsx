@@ -11,10 +11,14 @@ import BlogsComponent from "./components/blogs";
 import LogInComponent from "./components/login";
 import AboutUsComponent from "./components/aboutUs";
 import ContactComponent from "./components/contact";
+import {CartProvider} from './CartContext';
+import { store } from "./store/reduces";
+import {Provider} from "react-redux"
 
 function App() {
   return (
     <Router>
+    <CartProvider>
       <Navbar />
       <Routes>
         <Route path="/" exact element={<BannerComponent />} />
@@ -28,6 +32,7 @@ function App() {
       </Routes>
       <FreqAskedQuestionComponent />
       <FooterComponent />
+      </CartProvider>
     </Router>
   );
 }

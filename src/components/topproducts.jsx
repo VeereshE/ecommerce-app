@@ -10,6 +10,8 @@ import {
   Button,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { increment } from "../store/Slices/index";
 
 function TopProductComponent() {
   const navigate = useNavigate();
@@ -24,6 +26,12 @@ function TopProductComponent() {
     setTimeout(() => {
       navigate(`/products/${id}`);
     }, 400);
+  };
+
+  const dispatch = useDispatch();
+
+  const addToCart = (product) => {
+    dispatch(increment(product));
   };
 
   useEffect(() => {
@@ -139,7 +147,12 @@ function TopProductComponent() {
                       >
                         View more
                       </Button>
-                      <Button style={buttonStyleCart}>Add To Cart</Button>
+                      <Button
+                        style={buttonStyleCart}
+                        onClick={() => addToCart(product)}
+                      >
+                        Add To Cart
+                      </Button>
                     </Container>
                   </CardContent>
                 </Card>

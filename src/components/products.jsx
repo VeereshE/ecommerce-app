@@ -9,9 +9,9 @@ import {
   CircularProgress,
   Button,
 } from "@mui/material";
-
-//import { useDispatch } from "react-redux";
-//import { addToCart } from "../stores/cartReducer";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { increment} from "../store/Slices/index";
 
 
 
@@ -22,22 +22,23 @@ const items = [
   "men's clothing",
   "women's clothing",
 ];
-import { useNavigate } from "react-router-dom";
 
 function ProductsComponent() {
   const navigate = useNavigate();
+
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+  const addToCart = (product)=>{
+    dispatch(increment(product))
+  }
 
   const onHandleViewMore = (id) => {
     navigate(`/products/${id}`);
   };
-  const incrementCart = (product) => {
-    //dispatch(addToCart(product));
-    console.log(product)
-  };
+
   const fetchProducts = (category) => {
     setLoading(true);
     const url =
@@ -172,8 +173,16 @@ function ProductsComponent() {
                         mt: 2,
                       }}
                     >
-                      <Button style={buttonStyleCart}  onClick={() => onHandleViewMore(product.id)}>View More</Button>
-                      <Button style={buttonStyleCart} onClick={incrementCart}>
+                      <Button
+                        style={buttonStyleCart}
+                        onClick={() => onHandleViewMore(product.id)}
+                      >
+                        View More
+                      </Button>
+                      <Button
+                        style={buttonStyleCart}
+                        onClick={() => addToCart(product)}
+                      >
                         Add To Cart
                       </Button>
                     </Container>

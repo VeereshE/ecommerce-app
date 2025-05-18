@@ -10,6 +10,7 @@ import {
   CardContent,
   Rating,
   Button,
+  Box,
 } from "@mui/material";
 import TopProductComponent from "./topproducts";
 
@@ -17,44 +18,50 @@ function ProductComponent() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [pricesValue, setpricesValue] = useState(1);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/${id}`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error("Network response was not ok");
+        return res.json();
+      })
       .then((data) => {
         setProduct(data);
         setLoading(false);
       })
       .catch((err) => {
         console.error("Failed to fetch product:", err);
+        setError("Failed to load product.");
         setLoading(false);
       });
   }, [id]);
 
-  if (loading)
+  if (loading) {
     return <CircularProgress sx={{ margin: "50px auto", display: "block" }} />;
-  if (!product) return <Typography>Error loading product</Typography>;
+  }
 
-  const onHandelInc = () => {
-    setpricesValue((prev) => prev + 1);
-  };
-  
-  const onHandelDec = () => {
-    setpricesValue((prev) => (prev > 1 ? prev - 1 : 1));
-  };
+  if (error || !product) {
+    return (
+      <Typography color="error" variant="h6" align="center" sx={{ mt: 4 }}>
+        {error || "Product not found"}
+      </Typography>
+    );
+  }
+
+  const discountPrice = ((product.price * 84.27) / 2).toFixed(2);
 
   return (
     <>
-      <Container sx={{ mt: 2 }}>
+      <Container sx={{ mt: 4 }}>
         <Card
           sx={{
-            padding: 1,
+            padding: 2,
             display: "flex",
-            gap: "10px",
-            marginBottom: 2,
             flexDirection: { xs: "column", sm: "row" },
+            gap: 3,
             alignItems: "center",
+            boxShadow: 3,
           }}
         >
           <CardMedia
@@ -64,95 +71,52 @@ function ProductComponent() {
             sx={{
               objectFit: "contain",
               height: 300,
-              marginBottom: 2,
-              width: "60%",
+              width: { xs: "100%", sm: "40%" },
+              borderRadius: 2,
+              backgroundColor: "#f9f9f9",
             }}
           />
-          <CardContent>
-            <Typography variant="h5" color="#1976D2" gutterBottom>
+          <CardContent sx={{ flex: 1 }}>
+            <Typography variant="h5" color="primary" gutterBottom>
               {product.title}
             </Typography>
-            <Typography variant="body1" sx={{ marginBottom: 2 }}>
+            <Typography variant="body1" sx={{ mb: 2 }}>
               {product.description}
             </Typography>
-            <div style={{ display: "flex", gap: "20px" }}>
-              <Rating
-                name={`rating-${product.id}`}
-                value={product.rating.rate}
-                precision={0.5}
-                readOnly
-                sx={{ fontSize: "1.3rem", color: "#FFC107" }}
-              />
-              <Typography variant="body1" sx={{ marginBottom: 2 }}>
-                {product.rating.count} <AiFillLike />
-              </Typography>
-            </div>
 
-            <Typography variant="h6" color="#1976D2">
-              Discount: ₹{((product.price * 84.27) / 2).toFixed(2) * pricesValue}
+            {product.rating && (
+              <Box
+                sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2 }}
+              >
+                <Rating
+                  value={product.rating.rate}
+                  precision={0.5}
+                  readOnly
+                  sx={{ color: "#FFC107" }}
+                />
+                <Typography variant="body2">
+                  {product.rating.count} <AiFillLike />
+                </Typography>
+              </Box>
+            )}
+
+            <Typography variant="h6" color="secondary">
+              ₹{discountPrice}
             </Typography>
-            <span>Exclusive Summer Sale (50% Off)</span>
-            <Container
-              sx={{ display: "flex", alignItems: "center", gap: "10px" }}
-            >
-              <Typography
-                variant="span"
-                sx={{ color: "#1976D2", fontWeight: "500" }}
-              >
-                Quality
+            <Typography variant="body2" sx={{ mb: 2 }}>
+              <em>Exclusive Summer Sale –  {product.rating.count < 100 ? "90%" : "30%"} Off!</em>
+            </Typography>
+
+            <Box sx={{ display: "flex", gap: 1, alignItems: "center", mb: 2 }}>
+              <Typography sx={{ fontWeight: 600 }}>Quality:</Typography>
+              <Typography>
+                {product.rating.count < 100 ? "😔 Low Rated" : "😀 Top Rated"}
               </Typography>
-              <Button
-                sx={{
-                  backgroundColor: "#007BFF",
-                  color: "white",
-                  borderRadius: "50%",
-                  width: "30px",
-                  height: "30px",
-                  minWidth: "auto",
-                  padding: "0",
-                  fontSize: "18px",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  "&:hover": {
-                    backgroundColor: "#0056b3",
-                  },
-                }}
-                onClick={onHandelDec}
-              >
-                -
-              </Button>
-              <span
-                style={{ fontSize: "16px", fontWeight: "600", color: "#333" }}
-              >
-                {pricesValue}
-              </span>
-              <Button
-                sx={{
-                  backgroundColor: "#007BFF",
-                  color: "white",
-                  borderRadius: "50%",
-                  width: "30px",
-                  height: "30px",
-                  minWidth: "auto",
-                  padding: "0",
-                  fontSize: "18px",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  "&:hover": {
-                    backgroundColor: "#0056b3",
-                  },
-                }}
-                onClick={onHandelInc}
-              >
-                +
-              </Button>
-            </Container>
-            <Button>Buy Now</Button>
+            </Box>
           </CardContent>
         </Card>
       </Container>
+
       <TopProductComponent />
     </>
   );

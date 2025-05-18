@@ -9,17 +9,17 @@ import { AiFillAlipayCircle } from "react-icons/ai";
 import { FaShopify } from "react-icons/fa";
 import { TbLogs } from "react-icons/tb";
 import Navbar from "react-bootstrap/Navbar";
-
-
+import { useSelector,useDispatch } from "react-redux";
+import { updateProducts } from "../store/Slices/index";
 
 function NavbarComponent() {
-
   const [isMobile, setIsMobile] = useState(false);
   const [isLaptop, setIsLaptop] = useState(false);
   const [isMobileNavbar, setIsMobileNavbar] = useState(false);
 
-  
+  const {products} = useSelector((state) => state.counter);
 
+  const dispatch = useDispatch();
 
   const handleClickSideNavbar = () => {
     setIsMobileNavbar((prev) => !prev);
@@ -31,10 +31,24 @@ function NavbarComponent() {
       setIsLaptop(window.innerWidth >= 769);
       setIsMobileNavbar(true);
     };
+   
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
+    
   }, []);
+
+  
+
+  useEffect(()=>{
+    const getItems = localStorage.getItem("products");
+
+    if(getItems){
+       dispatch(updateProducts(JSON.parse(getItems)))
+    }
+  },[])
+
+  console.log("ALl the products ", products )
 
   return (
     <>
@@ -120,7 +134,7 @@ function NavbarComponent() {
                         fontWeight: "bold",
                       }}
                     >
-                     9
+                     {products.length}
                     </span>
                     <span style={{ marginLeft: "5px" }}>Cart</span>
                   </div>
@@ -166,7 +180,7 @@ function NavbarComponent() {
                     fontWeight: "bold",
                   }}
                 >
-                   9
+                  {products.length}
                 </span>
                 <span style={{ marginLeft: "5px" }}>Cart</span>
               </div>
@@ -178,6 +192,9 @@ function NavbarComponent() {
             <Nav.Link href="/login" style={navLinkStyle}>
               <Button style={buttonStyle}>Log In </Button>{" "}
             </Nav.Link>
+            {/* <button onClick={() => dispatch(decrement())}>-</button>
+            <button onClick={() => dispatch(increment())}>+</button>
+            <button onClick={() => dispatch(incrementByAmount(5))}>{count}</button> */}
           </Container>
         ))}
     </>
