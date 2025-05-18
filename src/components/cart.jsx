@@ -18,7 +18,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { addToCart, decrement } from "../store/Slices/index";
 
 function CartComponent() {
-
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.counter);
 
@@ -36,7 +35,6 @@ function CartComponent() {
     (acc, item) => acc + item.quantity * item.price * 84.27,
     0
   );
-  
 
   return (
     <Container sx={{ mt: 4 }}>
@@ -48,27 +46,64 @@ function CartComponent() {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: 2,
-            paddingBottom:3
+            gap: 3,
+            paddingBottom: 3,
           }}
         >
+          {/* Empty Cart Image */}
           <img
             src="https://cdn-icons-png.flaticon.com/512/2038/2038854.png"
             alt="Empty cart"
             width={150}
             height={150}
-            style={{ opacity: 0.6 }}
+            style={{
+              opacity: 0.8,
+              marginBottom: "1rem",
+              transition: "all 0.3s ease",
+            }}
           />
+
+          {/* Main Title */}
           <Typography
-            variant="h6"
-            sx={{ fontWeight: "bold", color: "text.secondary" }}
+            variant="h5"
+            sx={{
+              fontWeight: "bold",
+              color: "#1976D2",
+              mb: 1,
+            }}
           >
-            Your cart is empty
+            Your Cart is Empty
           </Typography>
-          <Typography variant="body2" sx={{ color: "text.secondary" }}>
-            Looks like you haven't added anything yet.
+
+          {/* Description */}
+          <Typography
+            variant="body1"
+            sx={{
+              color: "text.secondary",
+              mb: 2,
+            }}
+          >
+            It looks like you haven't added anything yet.
           </Typography>
-          <Button variant="contained" color="primary" href="/products" sx={{ mt: 2 }}>
+
+          {/* Button to Browse Products */}
+          <Button
+            variant="contained"
+            color="primary"
+            href="/products"
+            sx={{
+              mt: 2,
+              paddingX: 4,
+              paddingY: 1.5,
+              backgroundColor: "#1976D2",
+              color: "#fff",
+              fontWeight: "bold",
+              textTransform: "none",
+              "&:hover": {
+                backgroundColor: "#1565c0", // Slightly darker blue for hover effect
+              },
+            }}
+          >
             Browse Products
           </Button>
         </Box>
