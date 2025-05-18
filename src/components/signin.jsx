@@ -82,6 +82,33 @@ function SignInComponent() {
     }
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  
+  //   if (validateForm()) {
+  //     try {
+  //       const response = await fetch("http://localhost:5000/api/register", {
+  //         method: "POST",
+  //         headers: { "Content-Type": "application/json" },
+  //         body: JSON.stringify(formData),
+  //       });
+  
+  //       const data = await response.json();
+  
+  //       if (response.ok) {
+  //         alert("Account created successfully!");
+  //         // Redirect to login or home page
+  //       } else {
+  //         alert(data.message);
+  //       }
+  //     } catch (err) {
+  //       console.error("Register error:", err);
+  //       alert("An error occurred. Please try again.");
+  //     }
+  //   }
+  // };
+  
+
   return (
     <Container maxWidth="sm" sx={{ mt: 3, mb: 5 }}>
       <Paper elevation={3} sx={{ p: 4, borderRadius: 3 }}>
