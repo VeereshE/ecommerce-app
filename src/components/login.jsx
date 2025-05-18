@@ -8,8 +8,10 @@ import {
   Typography,
   Avatar,
 } from "@mui/material";
-import PersonIcon from "@mui/icons-material/Person"; // Default avatar icon
-import { AiFillAlipayCircle } from "react-icons/ai"; // Alipay Circle Icon
+import PersonIcon from "@mui/icons-material/Person"; 
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 function LogInComponent() {
   const [email, setEmail] = useState("");
@@ -19,7 +21,6 @@ function LogInComponent() {
     password: "",
   });
 
-  // Validate form fields
   const validateForm = () => {
     const newErrors = {
       email: "",
@@ -29,7 +30,7 @@ function LogInComponent() {
     if (!email) {
       newErrors.email = "Email is required.";
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = "Please enter a valid email address.";
+      newErrors.email = "Please enter a valid email address."; 
     }
 
     if (!password) {
@@ -40,13 +41,17 @@ function LogInComponent() {
     return !newErrors.email && !newErrors.password;
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (validateForm()) {
-      // Handle login logic here, e.g., API request
       console.log("Form submitted", { email, password });
+      toast.success("Login Successfully! 😊", {
+        position: "top-right",
+      });
+    }else{
+      toast.error("Something went wrong! 😔", {
+        position: "top-right",
+      });
     }
   };
 
@@ -69,7 +74,7 @@ function LogInComponent() {
               mb: 3,
             }}
           >
-            <Avatar sx={{ mr: 2 }}>
+            <Avatar sx={{ bgcolor: "#1976D2", mr: 1 }}>
               <PersonIcon />
             </Avatar>
             <Typography
@@ -85,7 +90,7 @@ function LogInComponent() {
                 },
               }}
             >
-              Welcome Back 👋
+              Welcome Back👋
             </Typography>
           </Box>
 
@@ -132,7 +137,7 @@ function LogInComponent() {
           >
             Log In
           </Button>
-
+          <ToastContainer />
           {/* Registration link */}
           <Typography
             variant="body2"

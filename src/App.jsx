@@ -13,6 +13,7 @@ import AboutUsComponent from "./components/aboutUs";
 import ContactComponent from "./components/contact";
 import {CartProvider} from './CartContext';
 import {Provider} from "react-redux"
+import SignInComponent from "./components/signin";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/my-cart" exact element={<CartComponent />} />
         <Route path="/list-blogs" exact element={<BlogsComponent />} />
         <Route path="/login" exact element={<LogInComponent />} />
+        <Route path="/register" exact element={<SignInComponent />} />
         <Route path="/aboutus" exact element={<AboutUsComponent/>} />
         <Route path="/contact" exact element={<ContactComponent/>} />
       </Routes>
