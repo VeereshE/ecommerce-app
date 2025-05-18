@@ -192,9 +192,7 @@ function NavbarComponent() {
             <Nav.Link href="/login" style={navLinkStyle}>
               <Button style={buttonStyle}>Log In </Button>{" "}
             </Nav.Link>
-            {/* <button onClick={() => dispatch(decrement())}>-</button>
-            <button onClick={() => dispatch(increment())}>+</button>
-            <button onClick={() => dispatch(incrementByAmount(5))}>{count}</button> */}
+           
           </Container>
         ))}
     </>

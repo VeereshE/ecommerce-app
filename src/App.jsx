@@ -12,7 +12,6 @@ import LogInComponent from "./components/login";
 import AboutUsComponent from "./components/aboutUs";
 import ContactComponent from "./components/contact";
 import {CartProvider} from './CartContext';
-import { store } from "./store/reduces";
 import {Provider} from "react-redux"
 
 function App() {
