@@ -18,7 +18,7 @@ import { toast } from "react-toastify";
 function ReviewComponent() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [rating, setRating] = useState(4);
+  const [rating, setRating] = useState(3);
   const [reviewText, setReviewText] = useState("");
   const [errors, setErrors] = useState({});
   const [reviews, setReviews] = useState([]);
@@ -54,6 +54,8 @@ function ReviewComponent() {
     fetchReviews();
   }, []);
 
+
+
   const handleSubmit = async () => {
     if (!validate()) return;
 
@@ -82,7 +84,7 @@ function ReviewComponent() {
       // Reset form
       setName("");
       setEmail("");
-      setRating(4);
+      setRating(3);
       setReviewText("");
       setErrors({});
       toast.success("Thank you! Your review has been submitted.", {
