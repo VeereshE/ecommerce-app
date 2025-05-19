@@ -54,8 +54,6 @@ function ReviewComponent() {
     fetchReviews();
   }, []);
 
-
-
   const handleSubmit = async () => {
     if (!validate()) return;
 
@@ -100,7 +98,6 @@ function ReviewComponent() {
 
   return (
     <Container maxWidth="md" sx={{ mt: 4, mb: 4 }}>
-      {/* Review Form */}
       <Paper elevation={3} sx={{ p: 4, mb: 4 }}>
         <Typography variant="h5" gutterBottom sx={{ fontWeight: "bold" }}>
           Leave a Review
@@ -108,9 +105,7 @@ function ReviewComponent() {
         <Typography variant="body2" color="text.secondary" gutterBottom>
           We value your feedback. Please fill out the form below.
         </Typography>
-
         <Divider sx={{ my: 2 }} />
-
         <Box sx={{ mb: 2 }}>
           <TextField
             label="Name"
@@ -189,7 +184,6 @@ function ReviewComponent() {
               alignItems: "center",
               mt: 3,
             }}
-           
           >
             <Typography variant="body2" color="text.secondary">
               No reviews yet.
@@ -203,10 +197,17 @@ function ReviewComponent() {
           </Box>
         ) : (
           reviews.map((rev, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              key={index}
+              sx={{ maxWidth: "400px", width: "300px", maxHeight: "400px" }}
+            >
               <Card elevation={2} sx={{ borderRadius: 2, boxShadow: 2 }}>
                 <CardContent>
-                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <Box sx={{ display: "flex", alignItems: "space-around" , gap:"10px"}}>
                     <Avatar
                       alt={rev.name}
                       src={rev.avatarUrl || "/path/to/default-avatar.jpg"}
@@ -214,6 +215,13 @@ function ReviewComponent() {
                     />
                     <Typography variant="subtitle1" fontWeight="bold">
                       {rev.name}
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      color="text.secondary"
+                      sx={{ mt: 1, display: "block" }}
+                    >
+                      {new Date(rev.createdAt).toLocaleDateString()}
                     </Typography>
                   </Box>
                   <Rating
@@ -224,13 +232,6 @@ function ReviewComponent() {
                   />
                   <Typography variant="body2" sx={{ mt: 1 }}>
                     {rev.review}
-                  </Typography>
-                  <Typography
-                    variant="caption"
-                    color="text.secondary"
-                    sx={{ mt: 1, display: "block" }}
-                  >
-                    {new Date(rev.createdAt).toLocaleDateString()}
                   </Typography>
                 </CardContent>
               </Card>
