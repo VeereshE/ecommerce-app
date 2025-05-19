@@ -52,6 +52,7 @@ function FooterComponent() {
       });
     }
   };
+
   return (
     <Container fluid style={footerContainer}>
       <Container style={footerContent}>
@@ -73,31 +74,23 @@ function FooterComponent() {
           <ToastContainer />
         </Container>
         <Container style={linkSection}>
-          <a href="/aboutus" style={linkStyle}>
+          <Link href="/aboutus" style={linkStyle}>
             About Us
-          </a>
-          <a href="/contact" style={linkStyle}>
+          </Link>
+          <Link href="/contact" style={linkStyle}>
             Contact
-          </a>
-          <a href="/support" style={linkStyle}>
-            Support
-          </a>
-          <a href="/privacy" style={linkStyle}>
-            Privacy Policy
-          </a>
+          </Link>
         </Container>
 
         <Container style={socialSection}>
-          <Container>
-            <Link
-              href="https://facebook.com"
-              target="_blank"
-              rel="noreferrer"
-              style={iconLink}
-            >
-              <FaFacebookF />
-            </Link>
-          </Container>
+          <Link
+            href="https://facebook.com"
+            target="_blank"
+            rel="noreferrer"
+            style={iconLink}
+          >
+            <FaFacebookF />
+          </Link>
 
           <Link
             href="https://twitter.com"
@@ -150,15 +143,15 @@ function FooterComponent() {
 const footerContainer = {
   backgroundColor: "#1976D2",
   color: "white",
-  padding: "30px 10%",
+  padding: "10px",
   textAlign: "center",
 };
 
 const footerContent = {
   display: "flex",
-  flexDirection: "row", // row layout
-  flexWrap: "wrap", // allows wrapping to the next line
-  gap: "20px", // spacing between items
+  flexDirection: "row",
+  flexWrap: "wrap",
+  gap: "10px",
   alignItems: "center",
   justifyContent: "center",
 };
@@ -175,6 +168,7 @@ const linkStyle = {
   textDecoration: "none",
   fontSize: "1rem",
   fontWeight: 500,
+  transition: "color 0.3s",
 };
 
 const socialSection = {
@@ -186,6 +180,10 @@ const iconLink = {
   color: "white",
   fontSize: "1.2rem",
   textDecoration: "none",
+  transition: "color 0.3s",
+  "&:hover": {
+    color: "#ffd700",
+  },
 };
 
 const paymentSection = {

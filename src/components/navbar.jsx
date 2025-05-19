@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/Button";
 import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
-import { FaGripLines } from "react-icons/fa";
+import { FaGripLines, FaSignOutAlt } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import Nav from "react-bootstrap/Nav";
 import { FaCartArrowDown } from "react-icons/fa";
@@ -11,12 +11,13 @@ import { TbLogs } from "react-icons/tb";
 import Navbar from "react-bootstrap/Navbar";
 import { useSelector, useDispatch } from "react-redux";
 import { updateProducts } from "../store/Slices/index";
+import { Avatar, IconButton, Typography } from "@mui/material";
 
 function NavbarComponent() {
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
-    window.location.href = "/login"; // redirect to login page
+    window.location.href = "/login";
   };
   const [isMobile, setIsMobile] = useState(false);
   const [isLaptop, setIsLaptop] = useState(false);
@@ -51,7 +52,6 @@ function NavbarComponent() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
 
   return (
     <>
@@ -152,9 +152,24 @@ function NavbarComponent() {
                 </Nav.Link>
 
                 {isLoggedIn ? (
-                  <Nav.Link onClick={handleLogout} style={navLinkStyle}>
-                    <Button style={buttonStyle}>Log Out</Button>
-                  </Nav.Link>
+                  <Container style={{ display: "flex", alignItems: "center" }}>
+                    <Button onClick={handleLogout} style={{ padding: 0 }}>
+                      <Avatar
+                        style={{
+                          width: 30,
+                          height: 30,
+                          backgroundColor: "transparent",
+                          border: "2px solid #1976D2",
+                          cursor: "pointer",
+                        }}
+                      >
+                        <FaSignOutAlt
+                          style={{ color: "#1976D2"}}
+                        />
+                      </Avatar>
+                    </Button>
+                   
+                  </Container>
                 ) : (
                   <Nav.Link href="/login" style={navLinkStyle}>
                     <Button style={buttonStyle}>Log In</Button>
@@ -208,9 +223,23 @@ function NavbarComponent() {
             </Nav.Link>
 
             {isLoggedIn ? (
-              <Nav.Link onClick={handleLogout} style={navLinkStyle}>
-                <Button style={buttonStyle}>Log Out</Button>
-              </Nav.Link>
+              <Container style={{ display: "flex", alignItems: "center" }}>
+                <Button onClick={handleLogout} style={{ padding: 0 }}>
+                  <Avatar
+                    style={{
+                      width: 30,
+                      height: 30,
+                      backgroundColor: "transparent",
+                      border: "2px solid #1976D2",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <FaSignOutAlt
+                      style={{ color: "#1976D2" }}
+                    />
+                  </Avatar>
+                </Button>
+              </Container>
             ) : (
               <Nav.Link href="/login" style={navLinkStyle}>
                 <Button style={buttonStyle}>Log In</Button>
@@ -283,10 +312,6 @@ const buttonStyleToggle = {
   transition: "background-color 0.3s ease",
 };
 
-// const hiddenStyle = {
-//   opacity: 0,
-//   transform: "translateY(-20px)",
-//   pointerEvents: "none",
-// };
+
 
 export default NavbarComponent;
