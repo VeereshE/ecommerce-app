@@ -43,11 +43,11 @@ function ReviewComponent() {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/review');
+        const response = await fetch("http://localhost:5000/api/review");
         const data = await response.json();
         setReviews(data.reverse());
       } catch (error) {
-        console.error('Error fetching reviews:', error);
+        console.error("Error fetching reviews:", error);
       }
     };
 
@@ -178,32 +178,55 @@ function ReviewComponent() {
       </Typography>
       <Grid container spacing={3}>
         {reviews.length === 0 ? (
-          <Typography variant="body2" color="text.secondary" sx={{ ml: 2 }}>
-            No reviews yet.
-          </Typography>
+          <Box
+            sx={{
+              textAlign: "center",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              mt: 3,
+            }}
+           
+          >
+            <Typography variant="body2" color="text.secondary">
+              No reviews yet.
+            </Typography>
+            <Typography variant="subtitle2" sx={{ mt: 1 }}>
+              Be the first to leave a review and help others!
+            </Typography>
+            <Button variant="outlined" size="small" sx={{ mt: 2 }}>
+              Leave a Review
+            </Button>
+          </Box>
         ) : (
           reviews.map((rev, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <Card elevation={2} sx={{ borderRadius: 2, boxShadow: 2 }}>
                 <CardContent>
-                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Box sx={{ display: "flex", alignItems: "center" }}>
                     <Avatar
                       alt={rev.name}
-                      src={rev.avatarUrl || '/path/to/default-avatar.jpg'}
+                      src={rev.avatarUrl || "/path/to/default-avatar.jpg"}
                       sx={{ width: 40, height: 40, marginRight: 2 }}
                     />
                     <Typography variant="subtitle1" fontWeight="bold">
                       {rev.name}
                     </Typography>
                   </Box>
-                  <Rating value={rev.rating} readOnly size="small" sx={{ mt: 1 }} />
+                  <Rating
+                    value={rev.rating}
+                    readOnly
+                    size="small"
+                    sx={{ mt: 1 }}
+                  />
                   <Typography variant="body2" sx={{ mt: 1 }}>
                     {rev.review}
                   </Typography>
                   <Typography
                     variant="caption"
                     color="text.secondary"
-                    sx={{ mt: 1, display: 'block' }}
+                    sx={{ mt: 1, display: "block" }}
                   >
                     {new Date(rev.createdAt).toLocaleDateString()}
                   </Typography>
