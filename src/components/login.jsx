@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -11,6 +11,7 @@ import {
 import PersonIcon from "@mui/icons-material/Person"; 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 
 function LogInComponent() {
@@ -20,6 +21,14 @@ function LogInComponent() {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   const validateForm = () => {
     const newErrors = {
@@ -41,19 +50,43 @@ function LogInComponent() {
     return !newErrors.email && !newErrors.password;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+  
     if (validateForm()) {
-      console.log("Form submitted", { email, password });
-      toast.success("Login Successfully! 😊", {
-        position: "top-right",
-      });
-    }else{
-      toast.error("Something went wrong! 😔", {
-        position: "top-right",
-      });
+      try {
+        const response = await fetch("http://localhost:5000/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        });
+  
+        const data = await response.json();
+  
+        if (response.ok) {
+          toast.success("Login successful! 🎉", {
+            position: "top-right",
+          });
+  
+          localStorage.setItem("token", data.token);
+  
+          setTimeout(() => {
+            window.location.href = "/"; 
+          }, 2000);
+        } else {
+          toast.error(data.message || "Login failed!", {
+            position: "top-right",
+          });
+        }
+      } catch (err) {
+        console.error("Login error:", err);
+        toast.error("An error occurred. Please try again.", {
+          position: "top-right",
+        });
+      }
     }
   };
+  
 
   return (
     <Container maxWidth="sm" sx={{ mt: 3, mb: 5 }}>

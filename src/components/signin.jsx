@@ -68,46 +68,48 @@ function SignInComponent() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (validateForm()) {
-      console.log("Form submitted:", formData);
-      toast.success("Create account Successfully! 😊", {
-        position: "top-right",
-      });
-    }else{
-      toast.error("Error, try again! 🥲", {
-        position: "top-right",
-      });
+      try {
+        const response = await fetch("http://localhost:5000/api/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          toast.success("Create account Successfully! 🎉", {
+            position: "top-right",
+          });
+          localStorage.setItem("token", data.token);
+
+          setFormData({
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+            address: "",
+            phone: "",
+            countryCode: "+1",
+          });
+          setTimeout(() => {
+            window.location.href = "/"; 
+          }, 2000);
+        } else {
+          toast.error("Error, Please try again!", {
+            position: "top-right",
+          });
+        }
+      } catch (err) {
+        console.error("Register error:", err);
+      }
     }
   };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  
-  //   if (validateForm()) {
-  //     try {
-  //       const response = await fetch("http://localhost:5000/api/register", {
-  //         method: "POST",
-  //         headers: { "Content-Type": "application/json" },
-  //         body: JSON.stringify(formData),
-  //       });
-  
-  //       const data = await response.json();
-  
-  //       if (response.ok) {
-  //         alert("Account created successfully!");
-  //         // Redirect to login or home page
-  //       } else {
-  //         alert(data.message);
-  //       }
-  //     } catch (err) {
-  //       console.error("Register error:", err);
-  //       alert("An error occurred. Please try again.");
-  //     }
-  //   }
-  // };
-  
 
   return (
     <Container maxWidth="sm" sx={{ mt: 3, mb: 5 }}>
