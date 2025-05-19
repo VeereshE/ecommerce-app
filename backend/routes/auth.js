@@ -2,6 +2,8 @@ const generateToken = require("../utlities.js");
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const User = require("../models/userModels");
+const contactSchema = require("../models/contactModels.js");
+const reviewSchema = require("../models/reviewModel.js");
 
 const router = express.Router();
 
@@ -60,5 +62,66 @@ router.post("/login", async (req, res) => {
     res.status(500).json({ message: "Server Error" });
   }
 });
+
+// CONTACT-US
+router.post("/contact", async (req, res) => {
+  const { name, email, message } = req.body;
+
+  if (!name || !email || !message) {
+    return res.status(400).json({
+      message: "All fields (name, email, message) are required.",
+    });
+  }
+
+  try {
+    const newContact = await contactSchema.create({
+      name,
+      email,
+      message,
+    });
+
+    res.status(201).json({
+      message: "Contact submitted successfully.",
+      token: generateToken(newContact._id), 
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "An error occurred while submitting your contact form.",
+    });
+  }
+});
+
+
+// REVIEW
+router.post("/review", async (req, res) => {
+  const { name, email, rating, review } = req.body;
+
+  if (!name || !email || !review ||! rating) {
+    return res.status(400).json({
+      message: "All fields (name, email, rating, review) are required.",
+    });
+  }
+
+  try {
+    const newReview = await reviewSchema.create({
+      name, email, rating, review
+    });
+
+    res.status(201).json({
+      message: "Review submitted successfully.",
+      token: generateToken(newReview._id), 
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "An error occurred while submitting your contact form.",
+    });
+  }
+});
+
+
+
+
 
 module.exports = router;

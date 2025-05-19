@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import TopProductComponent from "./topproducts";
 import RatingComponent from "./rating";
 import SubBannerComponent from "./subbannersection";
+import ReviewComponent from "./review";
 
 const bannerData = [
   {
@@ -136,6 +137,7 @@ function BannerComponent() {
       <TopProductComponent />
       <SubBannerComponent/>
       <RatingComponent />
+      <ReviewComponent/>
     </>
   );
 }
