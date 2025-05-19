@@ -50,7 +50,6 @@ function CartComponent() {
             paddingBottom: 3,
           }}
         >
-          {/* Empty Cart Image */}
           <img
             src="https://cdn-icons-png.flaticon.com/512/2038/2038854.png"
             alt="Empty cart"
@@ -85,8 +84,6 @@ function CartComponent() {
           >
             It looks like you haven't added anything yet.
           </Typography>
-
-          {/* Button to Browse Products */}
           <Button
             variant="contained"
             color="primary"
@@ -100,7 +97,7 @@ function CartComponent() {
               fontWeight: "bold",
               textTransform: "none",
               "&:hover": {
-                backgroundColor: "#1565c0", // Slightly darker blue for hover effect
+                backgroundColor: "#1565c0", 
               },
             }}
           >

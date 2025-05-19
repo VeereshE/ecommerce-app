@@ -31,7 +31,18 @@ function TopProductComponent() {
   const dispatch = useDispatch();
 
   const addToCart = (product) => {
-    dispatch(increment(product));
+    const token = localStorage.getItem("token");
+    if (token) {
+      dispatch(increment(product));
+    } else {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      setTimeout(() => {
+        navigate("/login");
+      }, 400);
+    }
   };
 
   useEffect(() => {

@@ -13,11 +13,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateProducts } from "../store/Slices/index";
 
 function NavbarComponent() {
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
-  }, []);
-
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
@@ -37,6 +32,15 @@ function NavbarComponent() {
   };
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+
+    const getItems = localStorage.getItem("products");
+
+    if (getItems) {
+      dispatch(updateProducts(JSON.parse(getItems)));
+    }
+
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
       setIsLaptop(window.innerWidth >= 769);
@@ -48,15 +52,6 @@ function NavbarComponent() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useEffect(() => {
-    const getItems = localStorage.getItem("products");
-
-    if (getItems) {
-      dispatch(updateProducts(JSON.parse(getItems)));
-    }
-  }, []);
-
-  console.log("ALl the products ", products);
 
   return (
     <>
@@ -120,33 +115,37 @@ function NavbarComponent() {
                 <Nav.Link href="/products" style={navLinkStyle}>
                   <FaShopify /> Products
                 </Nav.Link>
-                <Nav.Link href="/my-cart" style={navLinkStyle}>
-                  <div
-                    style={{
-                      position: "relative",
-                      display: "flex",
-                      alignItems: "center",
-                    }}
-                  >
-                    <FaCartArrowDown />
-                    <span
+                {isLoggedIn ? (
+                  <Nav.Link href="/my-cart" style={navLinkStyle}>
+                    <div
                       style={{
-                        position: "absolute",
-                        top: "-15px",
-                        right: "-15px",
-                        backgroundColor: "#1976D2",
-                        color: "white",
-                        borderRadius: "50%",
-                        padding: "2px 6px",
-                        fontSize: "0.7rem",
-                        fontWeight: "bold",
+                        position: "relative",
+                        display: "flex",
+                        alignItems: "center",
                       }}
                     >
-                      {products.length}
-                    </span>
-                    <span style={{ marginLeft: "5px" }}>Cart</span>
-                  </div>
-                </Nav.Link>
+                      <FaCartArrowDown />
+                      <span
+                        style={{
+                          position: "absolute",
+                          top: "-15px",
+                          right: "-15px",
+                          backgroundColor: "#1976D2",
+                          color: "white",
+                          borderRadius: "50%",
+                          padding: "2px 6px",
+                          fontSize: "0.7rem",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {products.length}
+                      </span>
+                      <span style={{ marginLeft: "5px" }}>Cart</span>
+                    </div>
+                  </Nav.Link>
+                ) : (
+                  ""
+                )}
 
                 <Nav.Link href="/list-blogs" style={navLinkStyle}>
                   <TbLogs /> Blogs
@@ -172,33 +171,38 @@ function NavbarComponent() {
             <Nav.Link href="/products" style={navLinkStyle}>
               <FaShopify /> Products
             </Nav.Link>
-            <Nav.Link href="/my-cart" style={navLinkStyle}>
-              <div
-                style={{
-                  position: "relative",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <FaCartArrowDown />
-                <span
+            {isLoggedIn ? (
+              <Nav.Link href="/my-cart" style={navLinkStyle}>
+                <div
                   style={{
-                    position: "absolute",
-                    top: "-15px",
-                    right: "-15px",
-                    backgroundColor: "#1976D2",
-                    color: "white",
-                    borderRadius: "50%",
-                    padding: "2px 6px",
-                    fontSize: "0.7rem",
-                    fontWeight: "bold",
+                    position: "relative",
+                    display: "flex",
+                    alignItems: "center",
                   }}
                 >
-                  {products.length}
-                </span>
-                <span style={{ marginLeft: "5px" }}>Cart</span>
-              </div>
-            </Nav.Link>
+                  <FaCartArrowDown />
+                  <span
+                    style={{
+                      position: "absolute",
+                      top: "-15px",
+                      right: "-15px",
+                      backgroundColor: "#1976D2",
+                      color: "white",
+                      borderRadius: "50%",
+                      padding: "2px 6px",
+                      fontSize: "0.7rem",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {products.length}
+                  </span>
+                  <span style={{ marginLeft: "5px" }}>Cart</span>
+                </div>
+              </Nav.Link>
+            ) : (
+              ""
+            )}
+
             <Nav.Link href="/list-blogs" style={navLinkStyle}>
               <TbLogs /> Blogs
             </Nav.Link>

@@ -11,9 +11,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { increment} from "../store/Slices/index";
-
-
+import { increment } from "../store/Slices/index";
 
 const items = [
   "All",
@@ -31,9 +29,20 @@ function ProductsComponent() {
 
   const dispatch = useDispatch();
 
-  const addToCart = (product)=>{
-    dispatch(increment(product))
-  }
+  const addToCart = (product) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      dispatch(increment(product));
+    } else {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      setTimeout(() => {
+        navigate("/login");
+      }, 400);
+    }
+  };
 
   const onHandleViewMore = (id) => {
     navigate(`/products/${id}`);
