@@ -78,8 +78,7 @@ function ReviewComponent() {
 
       const data = await response.json();
       setReviews([data, ...reviews]);
-
-      // Reset form
+      
       setName("");
       setEmail("");
       setRating(3);
