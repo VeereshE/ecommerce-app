@@ -100,7 +100,7 @@ function ReviewComponent() {
     <Container maxWidth="md" sx={{ mt: 4, mb: 4 }}>
       <Paper elevation={3} sx={{ p: 4, mb: 4 }}>
         <Typography variant="h5" gutterBottom sx={{ fontWeight: "bold" }}>
-          Leave your Review 😊
+           Drop your Review 😊
         </Typography>
         <Typography variant="body2" color="text.secondary" gutterBottom>
           We value your feedback. Please fill out the form below.
