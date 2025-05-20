@@ -212,9 +212,8 @@ const buttonStyleCart = {
   border: "none",
   borderRadius: "5px",
   cursor: "pointer",
-  fontSize: "14px",
+  fontSize: "12px",
   fontWeight: "bold",
-  padding: "8px 16px",
   transition: "background-color 0.3s ease, transform 0.3s ease",
 };
 
