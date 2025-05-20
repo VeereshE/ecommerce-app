@@ -11,12 +11,13 @@ import { TbLogs } from "react-icons/tb";
 import Navbar from "react-bootstrap/Navbar";
 import { useSelector, useDispatch } from "react-redux";
 import { updateProducts } from "../store/Slices/index";
-import { Avatar, IconButton, Typography } from "@mui/material";
+import { Avatar } from "@mui/material";
 
 function NavbarComponent() {
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
+    localStorage.removeItem("products")
     window.location.href = "/login";
   };
   const [isMobile, setIsMobile] = useState(false);

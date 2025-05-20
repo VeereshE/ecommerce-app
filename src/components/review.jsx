@@ -62,6 +62,7 @@ function ReviewComponent() {
       email,
       rating,
       review: reviewText,
+      createdAt: new Date(),
     };
 
     try {
@@ -77,8 +78,8 @@ function ReviewComponent() {
       }
 
       const data = await response.json();
-      setReviews([data, ...reviews]);
-
+      setReviews([ ...reviews,reviewData]);
+      console.log(...reviews,reviewData, "Reviews,ReviewData")
       setName("");
       setEmail("");
       setRating(3);
@@ -181,7 +182,7 @@ function ReviewComponent() {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              mt: 3,
+              mt: 2,
             }}
           >
             <Typography variant="body2" color="text.secondary">
@@ -202,7 +203,8 @@ function ReviewComponent() {
               sm={6}
               md={4}
               key={index}
-              sx={{ maxWidth: "400px", width: "300px", maxHeight: "400px" }}
+              sx={{ maxWidth: "250px",  Width:"300px", maxHeight: "300px" , flexGrow:1}}
+              
             >
               <Card elevation={2} sx={{ borderRadius: 2, boxShadow: 2 }}>
                 <CardContent>
