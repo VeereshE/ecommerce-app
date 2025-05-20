@@ -30,6 +30,10 @@ function NavbarComponent() {
   const dispatch = useDispatch();
 
   const handleClickSideNavbar = () => {
+     window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     setIsMobileNavbar((prev) => !prev);
   };
 

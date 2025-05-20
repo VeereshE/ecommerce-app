@@ -182,7 +182,7 @@ const buttonStyleCart = {
   border: "none",
   borderRadius: "5px",
   cursor: "pointer",
-  fontSize: "16px",
+  fontSize: "12px",
   fontWeight: "bold",
   transition: "background-color 0.3s ease, transform 0.3s ease",
   "&:hover": {
