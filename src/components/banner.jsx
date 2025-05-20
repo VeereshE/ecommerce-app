@@ -135,7 +135,6 @@ function BannerComponent() {
         ))}
       </Swiper>
       <TopProductComponent />
-      <TopProductComponent />
       <SubBannerComponent/>
       <RatingComponent />
       <ReviewComponent/>

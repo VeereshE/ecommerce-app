@@ -4,8 +4,6 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { Box, Container, Paper } from "@mui/material";
 
 export default function FreqAskedQuestion() {
@@ -41,7 +39,7 @@ export default function FreqAskedQuestion() {
           <Typography color="#1976D2">
             We accept all major credit and debit cards, PayPal, Apple Pay,
             Google Pay, and some Buy Now, Pay Later services like Klarna and
-            Afterpay.
+            After pay.
           </Typography>
         </AccordionDetails>
       </Accordion>
