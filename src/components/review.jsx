@@ -43,7 +43,7 @@ function ReviewComponent() {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/review");
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/review`);
         const data = await response.json();
         setReviews(data.reverse());
       } catch (error) {
@@ -65,7 +65,7 @@ function ReviewComponent() {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/api/review", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/review`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(reviewData),
@@ -78,7 +78,7 @@ function ReviewComponent() {
 
       const data = await response.json();
       setReviews([data, ...reviews]);
-      
+
       setName("");
       setEmail("");
       setRating(3);

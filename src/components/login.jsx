@@ -55,7 +55,8 @@ function LogInComponent() {
   
     if (validateForm()) {
       try {
-        const response = await fetch("http://localhost:5000/api/login", {
+         console.log(`${import.meta.env.VITE_API_URL}/register`, "API is working 😊")
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, password }),

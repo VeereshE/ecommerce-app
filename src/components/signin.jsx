@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import {
   Avatar,
   Box,
@@ -73,11 +74,15 @@ function SignInComponent() {
 
     if (validateForm()) {
       try {
-        const response = await fetch("http://localhost:5000/api/register", {
+       
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/register`, {
+          
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
         });
+
+        
 
         const data = await response.json();
 

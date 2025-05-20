@@ -25,7 +25,7 @@ const authRoutes = require("./routes/auth");
 app.use("/api", authRoutes);
 
 // Server main "/"
-app.get("/", (res) => {
+app.get("/", (req,res) => {
   res.send("Backed is correct");
 });
 
